@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- React의 어려운 방식[사용할 일은 없음] :: 구식React -->
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script>
+    const root = document.querySelector("#root");
+    const h3 = React.createElement("h3", {
+        onMouseEnter: () => console.log("mouse Enter"),
+    },
+        "Hard React Test");
+
+    const btn = React.createElement("button", {
+        onClick: () => console.log('i am clicked'),
+        style: {
+            backgroundColor: "tomato",
+        }
+        // onClick은 Javascript에서 addEventListener('click', () => console.log)
+    },
+        "Click me");
+    const container = React.createElement("div", null, [h3, btn]);
+    ReactDOM.render(container, root);
+</script>
+
+</html>
