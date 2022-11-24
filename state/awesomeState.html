@@ -43,7 +43,8 @@
         1번째는 우리가 담으려고 하는 값
         2번째는 1번째 요소를 바꿀 때 사용할 modifier*/
         const onClick = () => {
-            modifier(counter+1);
+            // modifier(counter+1);
+            modifier((current) => current+1); // 결국 current가 가리키는 것이 counter인셈이다.
         }
         return (
             <div>
@@ -53,6 +54,8 @@
         );
     }
     ReactDOM.render(<App />, root);
+
+    // React의 특징 : 데이터가 바뀔때마다 컴포넌트를 리렌더링하고 UI를 refresh한다.
 </script>
 
 </html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    function App() {
+        const [min, changeMin] = React.useState();
+        const onChange = (event) => {
+            changeMin(event.target.value);
+        };
+        return (
+            <div>
+                <h3>AllInOne_Converter</h3>
+                <label htmlFor="minutes">Minutes</label>
+                <input value={min} id="minutes" placeholder="Minutes" type="number" onChange={onChange}/>
+                <h4>You want convert {min}</h4>
+                <label htmlFor="hours">Hours</label>
+                <input id="hours" placeholder="Hours" type="number" />
+            </div>
+        );
+    }
+    const root = document.querySelector("#root");
+    ReactDOM.render(<App />, root);
+</script>
+
+</html>
