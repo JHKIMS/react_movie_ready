@@ -28,14 +28,31 @@
 
     const root = document.querySelector("#root");
     function App() {
+        /* let counter = 0
+        function countUp(){}
+        밑의 코드와 동일한 역할을 한다.*/
+        // const data = React.useState(0);
+
+        /* 배열 변수에 한번에 넣는 방법
+        const arr = [1, 2, 3]
+        const [a,b,c] = arr;
+        a = 1, b = 2, c = 3 이렇게 나온다. */
+        let [counter, modifier] = React.useState(0); 
+        /* React가 데이터를 담고 업데이트 하는 방식
+        useState는 배열을 하나 주는데,
+        1번째는 우리가 담으려고 하는 값
+        2번째는 1번째 요소를 바꿀 때 사용할 modifier*/
+        const onClick = () => {
+            modifier(counter+1);
+        }
         return (
             <div>
-                <h3>TotalClick : 0</h3>
-                <button>Click me</button>
+                <h3>TotalClick : {counter}</h3>
+                <button onClick={onClick}>Click me</button>
             </div>
         );
     }
     ReactDOM.render(<App />, root);
 </script>
 
-</html>f
+</html>
