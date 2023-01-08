@@ -8,7 +8,7 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
 
-    /*     const root = document.querySelector("#root");
+    /*  const root = document.querySelector("#root");
         let counter = 0;
         function countUp() {
             counter = counter + 1;
@@ -28,10 +28,12 @@
 
     const root = document.querySelector("#root");
     function App() {
-        /* let counter = 0
-        function countUp(){}
-        밑의 코드와 동일한 역할을 한다.*/
-        // const data = React.useState(0);
+        /* 
+            let counter = 0
+            function countUp(){}
+            -- 위와 밑의 코드는 동일한 역할을 한다. --
+            const data = React.useState(0);
+        */ 
 
         /* 배열 변수에 한번에 넣는 방법
         const arr = [1, 2, 3]
@@ -44,11 +46,11 @@
         2번째는 1번째 요소를 바꿀 때 사용할 modifier*/
         const onClick = () => {
             // modifier(counter+1);
-            modifier((current) => current+1); // 결국 current가 가리키는 것이 counter인셈이다.
+            modifier((currentCount) => currentCount+1); // 결국 current가 가리키는 것이 counter인셈이다.
         }
         return (
             <div>
-                <h3>TotalClick : {counter}</h3>
+                <h3>StateClick : {counter}</h3>
                 <button onClick={onClick}>Click me</button>
             </div>
         );

@@ -8,23 +8,26 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     function App() {
-        const [min, changeMin] = React.useState(0);
+        const [amount, changeAmount] = React.useState(0);
         const [flipped, setFlipped] = React.useState(false);
         const onChange = (event) => {
             changeMin(event.target.value);
         };
-        const reset=()=>changeMin(0);
-        const onFlip = () => setFlipped((current) => !current);
+        const reset=()=>changeAmount(0);
+        const onFlip = () => {
+            reset();
+            setFlipped((currentFlip) => !currentFlip);
+        }
         return (
             <div>
                 <h3>AllInOne_Converter</h3>
                 <div>
                     <label htmlFor="minutes">Minutes</label>
-                    <input value={min} id="minutes" placeholder="Minutes" type="number" onChange={onChange} disabled={flipped} />
+                    <input value={flipped ? amount*60:amount} id="minutes" placeholder="Minutes" type="number" onChange={onChange} disabled={flipped} />
                 </div>
                 <div>
                     <label htmlFor="hours">Hours</label>
-                    <input value={Math.round(min/60)} id="hours" placeholder="Hours" type="number" disabled={!flipped} />
+                    <input value={flipped ? amount:Math.round(amount/60)} id="hours" placeholder="Hours" type="number" onChange={onChange} disabled={!flipped} />
                 </div>
                 <button onClick={reset}>Reset버튼</button>
                 <button onClick={onFlip}>Flip</button>
