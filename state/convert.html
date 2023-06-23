@@ -2,66 +2,68 @@
 
 <body>
     <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        function MinutesToHours() {
+            const [amount, changeAmount] = React.useState(0);
+            const [flipped, setFlipped] = React.useState(false);
+            const onChange = (event) => {
+                changeAmount(event.target.value);
+            };
+            const reset = () => changeAmount(0);
+            const onFlip = () => {
+                reset();
+                setFlipped((currentFlip) => !currentFlip);
+            }
+            return (
+                <div>
+                    <div>
+                        <label htmlFor="minutes">Minutes</label>
+                        <input value={flipped ? amount * 60 : amount} id="minutes" placeholder="Minutes" type="number" onChange={onChange} disabled={flipped} />
+                    </div>
+                    <div>
+                        <label htmlFor="hours">Hours</label>
+                        <input value={flipped ? amount : Math.round(amount / 60)} id="hours" placeholder="Hours" type="number" onChange={onChange} disabled={!flipped} />
+                    </div>
+                    <button onClick={reset}>Reset버튼</button>
+                    <button onClick={onFlip}>{flipped ? "Turn back" : "Flip"}</button>
+                </div>
+            );
+        }
+
+        function KmToMiles() {
+            return <h3> Km To Miles</h3>;
+        }
+
+        function App() {
+            const [index, setIndex] = React.useState("0")
+            const onSelect = (event) => {
+                setIndex(event.target.value);
+            }
+            return (
+                <div>
+                    <h3>AllInOne_Converter</h3>
+                    <select value={index} onChange={onSelect}>
+                        <option value="xx">Select Your Units</option>
+                        <option value="0">Minutes & Hours</option>
+                        <option value="1">Km & Miles</option>
+                    </select>
+                    <hr />
+                    {index === "xx" ? "Please select your units" : null}
+                    {index === "0" ? <MinutesToHours /> : null}
+                    {index === "1" ? <KmToMiles /> : null}
+                </div>
+            );
+        }
+        const root = document.querySelector("#root");
+        ReactDOM.render(<App />, root);
+
+
+    </script>
 </body>
-<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script type="text/babel">
-    function MinutesToHours() {
-        const [amount, changeAmount] = React.useState(0);
-        const [flipped, setFlipped] = React.useState(false);
-        const onChange = (event) => {
-            changeMin(event.target.value);
-        };
-        const reset=()=>changeAmount(0);
-        const onFlip = () => {
-            reset();
-            setFlipped((currentFlip) => !currentFlip);
-        }
-        return (
-            <div>
-                <div>
-                    <label htmlFor="minutes">Minutes</label>
-                    <input value={flipped ? amount*60:amount} id="minutes" placeholder="Minutes" type="number" onChange={onChange} disabled={flipped} />
-                </div>
-                <div>
-                    <label htmlFor="hours">Hours</label>
-                    <input value={flipped ? amount:Math.round(amount/60)} id="hours" placeholder="Hours" type="number" onChange={onChange} disabled={!flipped} />
-                </div>
-                <button onClick={reset}>Reset버튼</button>
-                <button onClick={onFlip}>{flipped ? "Turn back":"Flip"}</button>
-            </div>
-        );
-    }
 
-    function KmToMiles(){
-        return <h3> Km To Miles</h3>;
-    }
-
-    function App() {
-        const [index, setIndex] = React.useState("0")
-        const onSelect = (event) => {
-            setIndex(event.target.value);
-        }
-        return (
-            <div>
-                <h3>AllInOne_Converter</h3>
-                <select value={index} onChange={onSelect}>
-                    <option value="xx">Select Your Units</option>
-                    <option value="0">Minutes & Hours</option>
-                    <option value="1">Km & Miles</option>
-                </select>
-                <hr />
-                {index === "xx" ? "Please select your units":null}
-                {index === "0" ? <MinutesToHours /> : null}
-                {index === "1" ? <KmToMiles /> : null}
-         </div>
-        );
-    }
-    const root = document.querySelector("#root");
-    ReactDOM.render(<App />, root);
-
-    
-</script>
 
 </html>
